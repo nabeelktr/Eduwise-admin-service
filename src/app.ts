@@ -1,10 +1,9 @@
-
 import RabbitMQClient from "./rabbitmq/client";
 
-class App{
-    constructor(){
-        RabbitMQClient.initialize();
-    }
+class App {
+  constructor() {
+    RabbitMQClient.initialize();
+  }
 }
 
-export default App
+export default App;

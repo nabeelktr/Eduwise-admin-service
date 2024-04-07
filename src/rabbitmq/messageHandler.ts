@@ -1,10 +1,19 @@
+import { AdminController } from "../controller/admin.controller";
 import { AdminUserController } from "../controller/admin.user.controller";
+import { AdminRepository } from "../repository/admin.repository";
+import { AdminService } from "../services/admin.service";
 
 import { adminUserService } from "../services/admin.user.service";
 import rabbitClient from "./client";
 
-const service = new adminUserService();
-const userController = new AdminUserController(service);
+const userService = new adminUserService();
+const userController = new AdminUserController(userService);
+
+const repository = new AdminRepository()
+const adminService = new AdminService(repository);
+const adminController = new AdminController(adminService);
+
+
 
 export default class MessageHandler {
   static async handle(
@@ -27,6 +36,10 @@ export default class MessageHandler {
 
       case "delete-user":
         response = await userController.deleteUser.bind(userController)(data);
+        break;
+
+        case "add-faq":
+        response = await adminController.addFAQ.bind(adminController)(data);
         break;
 
       default:
