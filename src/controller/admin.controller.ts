@@ -12,4 +12,13 @@ export class AdminController {
       console.log(e);
     }
   };
+
+  getFAQ = async () => {
+    try {
+      const response = await this.service.getFAQ()
+      return response;
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
 }

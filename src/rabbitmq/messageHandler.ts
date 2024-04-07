@@ -42,6 +42,10 @@ export default class MessageHandler {
         response = await adminController.addFAQ.bind(adminController)(data);
         break;
 
+        case "get-faq":
+          response = await adminController.getFAQ.bind(adminController)();
+          break;
+
       default:
         response = "Request-key notfound";
         break;
