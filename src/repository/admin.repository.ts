@@ -1,11 +1,33 @@
 import { DBConnectionError } from "@nabeelktr/error-handler";
 import { IRepository } from "../interfaces/iRepository";
 import FAQModel from "../model/schemas/faq.schema";
+import CategoriesModel from "../model/schemas/categories.schema";
 
 export class AdminRepository implements IRepository {
-  getFAQ(): Promise<any> {
+
+
+  async addCategories(categories: any): Promise<Object> {
     try {
-      const faq = FAQModel.find();
+        await CategoriesModel.deleteMany();
+        await CategoriesModel.create(categories);
+        return { success: true };
+      } catch (e: any) {
+        throw new DBConnectionError();
+      }
+  }
+
+  async getCategories(): Promise<any> {
+    try {
+        const categories = await CategoriesModel.find();
+        return categories;
+      } catch (e: any) {
+        throw new DBConnectionError();
+      }
+  }
+
+   async getFAQ(): Promise<any> {
+    try {
+      const faq = await FAQModel.find();
       return faq;
     } catch (e: any) {
       throw new DBConnectionError();

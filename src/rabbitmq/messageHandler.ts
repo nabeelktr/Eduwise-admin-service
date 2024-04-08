@@ -9,11 +9,9 @@ import rabbitClient from "./client";
 const userService = new adminUserService();
 const userController = new AdminUserController(userService);
 
-const repository = new AdminRepository()
+const repository = new AdminRepository();
 const adminService = new AdminService(repository);
 const adminController = new AdminController(adminService);
-
-
 
 export default class MessageHandler {
   static async handle(
@@ -38,13 +36,23 @@ export default class MessageHandler {
         response = await userController.deleteUser.bind(userController)(data);
         break;
 
-        case "add-faq":
+      case "add-faq":
         response = await adminController.addFAQ.bind(adminController)(data);
         break;
 
-        case "get-faq":
-          response = await adminController.getFAQ.bind(adminController)();
-          break;
+      case "get-faq":
+        response = await adminController.getFAQ.bind(adminController)();
+        break;
+
+      case "add-categories":
+        response = await adminController.addCategories.bind(adminController)(
+          data
+        );
+        break;
+
+      case "get-categories":
+        response = await adminController.getCategories.bind(adminController)();
+        break;
 
       default:
         response = "Request-key notfound";

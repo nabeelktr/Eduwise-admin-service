@@ -21,4 +21,22 @@ export class AdminController {
       console.log(e);
     }
   };
+
+  addCategories = async (categories: any) => {
+    try {
+      const response = await this.service.addCategories(categories)
+      return response;
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+
+  getCategories = async () => {
+    try {
+      const response = await this.service.getCategories()
+      return response;
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
 }
