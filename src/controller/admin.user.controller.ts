@@ -1,4 +1,4 @@
-import { NotFoundError } from "@nabeelktr/error-handler";
+import { DBConnectionError, NotFoundError } from "@nabeelktr/error-handler";
 import { IAdminUserService } from "../interfaces/iAdmin.User.service";
 
 export class AdminUserController {
@@ -9,7 +9,7 @@ export class AdminUserController {
       const response = await this.service.getUsers()
       return response;
     } catch (e: any) {
-      console.log(e);
+      return ({error: "rabbitmq error"})
     }
   };
 
@@ -18,7 +18,7 @@ export class AdminUserController {
       const response = await this.service.getInstructors()
       return response;
     } catch (e: any) {
-      console.log(e);
+      return ({error: "rabbitmq error"})
     }
   };
 
@@ -27,7 +27,7 @@ export class AdminUserController {
       const response = await this.service.deleteUser(userId);
       return response
     }catch(e:any){
-      console.log(e);
+      return ({error: "rabbitmq error"})
     }
   }
 
