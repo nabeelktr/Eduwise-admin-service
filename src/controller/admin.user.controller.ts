@@ -1,4 +1,3 @@
-import { DBConnectionError, NotFoundError } from "@nabeelktr/error-handler";
 import { IAdminUserService } from "../interfaces/iAdmin.User.service";
 
 export class AdminUserController {
@@ -6,6 +5,7 @@ export class AdminUserController {
 
   getUsers = async () => {
     try {
+      // throw new Error("error")
       const response = await this.service.getUsers()
       return response;
     } catch (e: any) {
@@ -31,5 +31,4 @@ export class AdminUserController {
     }
   }
 
- 
 }
